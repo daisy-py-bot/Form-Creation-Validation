@@ -1,54 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('registration-form')
-    const feedbackDiv = document.getElementById('form-feedback')
-
+    const form = document.getElementById('registration-form');
+    const feedbackDiv = document.getElementById('form-feedback');
+  
     form.addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent form submission
-
+  
       let isValid = true;
       const messages = [];
+  
+      // Select input fields and retrieve trimmed values
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      
+  
       // Validate username
-      const usernameInput = document.getElementById('username');
-      const usernameError = document.getElementById('usernameError');
-      if (usernameInput.value.length < 3) {
-        usernameError.textContent = 'Username must be at least 3 characters long.';
-        return;
-      } else {
-        usernameError.textContent = '';
-      }
-
+      //const usernameError = document.getElementById('usernameError');
+      if (username.length < 3) {
+        username.textContent = 'Username must be at least 3 characters long.';
+        messages.push('Username must be at least 3 characters long.');
+        isValid = false;
+      } 
+  
       // Validate email
-      const emailInput = document.getElementById('email');
-      const emailError = document.getElementById('emailError');
-      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(emailInput.value)) {
+      //const emailError = document.getElementById('emailError');
+      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
         emailError.textContent = 'Please enter a valid email address.';
-        return;
-      } else {
-        emailError.textContent = '';
-      }
-
+        messages.push('Please enter a valid email address.');
+        isValid = false;
+      } 
+  
       // Validate password
-      const passwordInput = document.getElementById('password');
-      const passwordError = document.getElementById('passwordError');
-      if (passwordInput.value.length < 6) {
+      //const passwordError = document.getElementById('passwordError');
+      if (password.length < 6) {
         passwordError.textContent = 'Password must be at least 6 characters long.';
-        return;
+        messages.push('Password must be at least 6 characters long.');
+        isValid = false;
+      } 
+  
+      // Display feedback message
+      feedbackDiv.style.display = 'block';
+      if (isValid) {
+        feedbackDiv.textContent = 'Registration successful!';
+        feedbackDiv.style.color = '#28a745';
       } else {
-        passwordError.textContent = '';
+        feedbackDiv.innerHTML = messages.join('<br>');
+        feedbackDiv.style.color = '#dc3545';
       }
 
-      // Display feedback message
-    feedbackDiv.style.display = 'block';
-    if (isValid) {
-      feedbackDiv.textContent = 'Registration successful!';
-      feedbackDiv.style.color = '#28a745';
-    } else {
-      feedbackDiv.innerHTML = messages.join('<br>');
-      feedbackDiv.style.color = '#dc3545';
-    }
-
-      // If all validations pass, submit the form
-      //form.submit();
+      
     });
-});
-
+    form.submit();
+  });
+  
