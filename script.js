@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Validate username
       //const usernameError = document.getElementById('usernameError');
       if (username.length < 3) {
-        username.textContent = 'Username must be at least 3 characters long.';
+        //username.textContent = 'Username must be at least 3 characters long.';
         messages.push('Username must be at least 3 characters long.');
         isValid = false;
       } 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Validate email
       //const emailError = document.getElementById('emailError');
       if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
-        emailError.textContent = 'Please enter a valid email address.';
+        //emailError.textContent = 'Please enter a valid email address.';
         messages.push('Please enter a valid email address.');
         isValid = false;
       } 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Validate password
       //const passwordError = document.getElementById('passwordError');
       if (password.length < 6) {
-        passwordError.textContent = 'Password must be at least 6 characters long.';
+        //passwordError.textContent = 'Password must be at least 6 characters long.';
         messages.push('Password must be at least 6 characters long.');
         isValid = false;
       } 
